@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   description:
     'A community for developers, to learn and share knowledge by asking and answering questions.',
   icons: {
-    icon: '/public/assets/images/site-logo.svg'
+    icon: '/assets/images/site-logo.svg'
   }
 }
 
