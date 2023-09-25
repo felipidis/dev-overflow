@@ -1,6 +1,7 @@
 import { ClerkProvider } from '@clerk/nextjs'
 import { Metadata } from 'next'
 import { Inter, Space_Grotesk } from 'next/font/google'
+import React from 'react'
 import './globals.css'
 
 const inter = Inter({
