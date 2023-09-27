@@ -71,3 +71,26 @@ export const BADGE_CRITERIA = {
     GOLD: 100000
   }
 }
+
+export const TOP_QUESTIONS = [
+  {
+    _id: '1',
+    title:
+      'Would it be appropriate to point out an error in another paper during a referee report?'
+  },
+  { _id: '2', title: 'How can an airconditioning machine exist?' },
+  { _id: '3', title: 'Interrogated every time crossing UK Border as citizen' },
+  { _id: '4', title: 'Low digit addition generator' },
+  {
+    _id: '5',
+    title: 'What is an example of 3 numbers that do not make up a vector?'
+  }
+]
+
+export const POPULAR_TAGS = [
+  { _id: '1', name: 'Javascript', totalQuestions: 100 },
+  { _id: '2', name: 'Typescript', totalQuestions: 200 },
+  { _id: '3', name: 'Next.JS', totalQuestions: 300 },
+  { _id: '4', name: 'React.JS', totalQuestions: 400 },
+  { _id: '5', name: 'NodeJS', totalQuestions: 250 }
+]
