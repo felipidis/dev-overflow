@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Badge } from '../ui/badge'
 
 type Props = {
-  _id: string
+  _id: number
   name: string
   totalQuestions?: number
   showCount?: boolean
@@ -14,7 +14,9 @@ const RenderTag = ({ _id, totalQuestions, name, showCount }: Props) => {
       <Badge className='subtle-medium background-light800_dark300 text-light400_light500 rounded-md border-none px-4 py-2 uppercase'>
         {name}
       </Badge>
-      <p className='small-medium text-dark500_light700'>{totalQuestions}</p>
+      {showCount && (
+        <p className='small-medium text-dark500_light700'>{totalQuestions}</p>
+      )}
     </Link>
   )
 }
