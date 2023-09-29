@@ -12,7 +12,7 @@ type TFilter = {
   value: string
 }
 
-type Props = {
+type FilterProps = {
   filters: TFilter[]
   placeholder: string
   otherClasses?: string
@@ -24,7 +24,7 @@ const Filter = ({
   placeholder,
   otherClasses,
   containerClasses
-}: Props) => {
+}: FilterProps) => {
   return (
     <div className={`relative ${containerClasses}`}>
       <Select>

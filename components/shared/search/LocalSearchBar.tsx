@@ -2,7 +2,7 @@
 import { Input } from '@/components/ui/input'
 import Image from 'next/image'
 
-type Props = {
+type LocalSearchBarProps = {
   route: string
   iconPosition: 'left' | 'right'
   imgSrc: string
@@ -16,7 +16,7 @@ const LocalSearchBar = ({
   imgSrc,
   placeholder,
   otherClasses
-}: Props) => {
+}: LocalSearchBarProps) => {
   return (
     <div
       className={`background-light800_darkgradient flex min-h-[56px] grow items-center gap-4 rounded-[10px] px-4 ${otherClasses}`}
