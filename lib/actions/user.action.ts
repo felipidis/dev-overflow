@@ -7,10 +7,12 @@ import { connectToDatabase } from '../mongoose'
 import {
   CreateUserParams,
   DeleteUserParams,
+  GetAllUsersParams,
+  GetUserByIdParams,
   UpdateUserParams
 } from './shared.types'
 
-export async function getUserById(params: any) {
+export async function getUserById(params: GetUserByIdParams) {
   try {
     await connectToDatabase()
 
@@ -20,7 +22,25 @@ export async function getUserById(params: any) {
 
     return user
   } catch (error) {
-    console.log('error', error)
+    console.log(error)
+  }
+}
+
+export async function getAllUsers(params: GetAllUsersParams) {
+  try {
+    await connectToDatabase()
+
+    // const { page, pageSize, filter, searchQuery } = params
+
+    const users = await User.find({})
+      .sort({
+        createdAt: -1
+      })
+      .exec()
+
+    return { users }
+  } catch (error) {
+    console.log(error)
   }
 }
 
@@ -33,7 +53,6 @@ export async function createUser(userData: CreateUserParams) {
     return newUser
   } catch (error) {
     console.log(error)
-    throw error
   }
 }
 
@@ -50,7 +69,6 @@ export async function updateUser(params: UpdateUserParams) {
     revalidatePath(path)
   } catch (error) {
     console.log(error)
-    throw error
   }
 }
 
@@ -82,6 +100,5 @@ export async function deleteUser(params: DeleteUserParams) {
     return deletedUser
   } catch (error) {
     console.log(error)
-    throw error
   }
 }
