@@ -6,7 +6,7 @@ import { getAllTags } from '@/lib/actions/tag.actions'
 import Link from 'next/link'
 
 const Tags = async () => {
-  const result = await getAllTags({})
+  const tags = await getAllTags({})
 
   return (
     <>
@@ -23,14 +23,13 @@ const Tags = async () => {
 
         <Filter
           filters={UserFilters}
-          placeholder='Select a Filter'
           otherClasses='min-h-[56px] sm:min-w-[170px]'
         />
       </div>
 
       <section className='mt-12 flex flex-wrap gap-4'>
-        {result!.tags.length > 0 ? (
-          result?.tags.map((tag) => (
+        {tags!.length > 0 ? (
+          tags?.map((tag) => (
             <Link
               href={`/tags/${tag._id}`}
               key={tag._id}

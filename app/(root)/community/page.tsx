@@ -6,7 +6,7 @@ import { getAllUsers } from '@/lib/actions/user.action'
 import Link from 'next/link'
 
 const Community = async () => {
-  const result = await getAllUsers({})
+  const users = await getAllUsers({})
 
   return (
     <>
@@ -21,14 +21,13 @@ const Community = async () => {
         />
         <Filter
           filters={UserFilters}
-          placeholder='Select a Filter'
           otherClasses='min-h-[56px] sm:min-w-[170px]'
         />
       </div>
 
       <section className='mt-12 flex flex-wrap gap-4'>
-        {result!.users.length > 0 ? (
-          result?.users.map((user) => <UserCard user={user} key={user._id} />)
+        {users!.length > 0 ? (
+          users?.map((user) => <UserCard user={user} key={user._id} />)
         ) : (
           <div className='paragraph-regular text-dark200_light800 mx-auto max-w-4xl text-center'>
             <p>No users yet</p>

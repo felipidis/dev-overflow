@@ -1,6 +1,6 @@
-import { Document, Schema, model, models } from 'mongoose'
+import { Schema, model, models } from 'mongoose'
 
-export type TQuestion = Document & {
+export type TQuestion = {
   _id: string
   title: string
   content: string
@@ -25,6 +25,6 @@ const QuestionSchema = new Schema<TQuestion>({
   createdAt: { type: Date, default: Date.now }
 })
 
-const Question = models.Question || model('Question', QuestionSchema)
+const Question = models.Question || model<TQuestion>('Question', QuestionSchema)
 
 export default Question

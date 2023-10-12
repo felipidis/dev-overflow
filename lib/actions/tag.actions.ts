@@ -31,7 +31,7 @@ export async function getAllTags(params: GetAllTagsParams) {
 
     const tags = await Tag.find({})
 
-    return { tags }
+    return tags
   } catch (error) {
     console.log(error)
   }
