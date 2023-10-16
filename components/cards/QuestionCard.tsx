@@ -16,6 +16,7 @@ type Tag = {
 
 type QuestionCardProps = {
   _id: string
+  clerkId?: string
   title: string
   tags: Tag[]
   author: Author
@@ -26,6 +27,7 @@ type QuestionCardProps = {
 }
 const QuestionCard = ({
   _id,
+  clerkId,
   title,
   tags,
   author,

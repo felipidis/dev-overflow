@@ -1,12 +1,12 @@
 import { BADGE_CRITERIA } from '@/constants'
 
-export interface SidebarLink {
+export type SidebarLink = {
   imgURL: string
   route: string
   label: string
 }
 
-export interface Job {
+export type Job = {
   id?: string
   employer_name?: string
   employer_logo?: string | undefined
@@ -20,26 +20,26 @@ export interface Job {
   job_country?: string
 }
 
-export interface Country {
+export type Country = {
   name: {
     common: string
   }
 }
 
-export interface ParamsProps {
+export type ParamsProps = {
   params: { id: string }
 }
 
-export interface SearchParamsProps {
+export type SearchParamsProps = {
   searchParams: { [key: string]: string | undefined }
 }
 
-export interface URLProps {
+export type URLProps = {
   params: { id: string }
   searchParams: { [key: string]: string | undefined }
 }
 
-export interface BadgeCounts {
+export type BadgeCounts = {
   GOLD: number
   SILVER: number
   BRONZE: number

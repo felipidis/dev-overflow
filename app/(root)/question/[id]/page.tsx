@@ -7,11 +7,12 @@ import Votes from '@/components/shared/Votes'
 import { getQuestionById } from '@/lib/actions/question.action'
 import { getUserById } from '@/lib/actions/user.action'
 import { formatLargeNumber, getTimeStamp } from '@/lib/utils'
+import { ParamsProps } from '@/types'
 import { auth } from '@clerk/nextjs'
 import Image from 'next/image'
 import Link from 'next/link'
 
-const QuestionDetails = async ({ params }: { params: { id: string } }) => {
+const QuestionDetails = async ({ params }: ParamsProps) => {
   const question = await getQuestionById({ questionId: params.id })
   const { userId: clerkId } = auth()
 

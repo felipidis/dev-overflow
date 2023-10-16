@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react'
 
-interface ThemeContextProps {
+type ThemeContextProps = {
   mode: string
   setMode: React.Dispatch<React.SetStateAction<string>>
 }

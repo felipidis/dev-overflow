@@ -2,21 +2,21 @@ import { Schema } from 'mongoose'
 
 import { IUser } from '@/mongodb'
 
-export interface CreateAnswerParams {
+export type CreateAnswerParams = {
   content: string
   author: string // User ID
   question: string // Question ID
   path: string
 }
 
-export interface GetAnswersParams {
+export type GetAnswersParams = {
   questionId: string
   sortBy?: string
   page?: number
   pageSize?: number
 }
 
-export interface AnswerVoteParams {
+export type AnswerVoteParams = {
   answerId: string
   userId: string
   hasUpVoted: boolean
@@ -24,41 +24,41 @@ export interface AnswerVoteParams {
   path: string
 }
 
-export interface DeleteAnswerParams {
+export type DeleteAnswerParams = {
   answerId: string
   path: string
 }
 
-export interface SearchParams {
+export type SearchParams = {
   query?: string | null
   type?: string | null
 }
 
-export interface RecommendedParams {
+export type RecommendedParams = {
   userId: string
   page?: number
   pageSize?: number
   searchQuery?: string
 }
 
-export interface ViewQuestionParams {
+export type ViewQuestionParams = {
   questionId: string
   userId: string | undefined
 }
 
-export interface JobFilterParams {
+export type JobFilterParams = {
   query: string
   page: string
 }
 
-export interface GetQuestionsParams {
+export type GetQuestionsParams = {
   page?: number
   pageSize?: number
   searchQuery?: string
   filter?: string
 }
 
-export interface CreateQuestionParams {
+export type CreateQuestionParams = {
   title: string
   content: string
   tags: string[]
@@ -66,11 +66,11 @@ export interface CreateQuestionParams {
   path: string
 }
 
-export interface GetQuestionByIdParams {
+export type GetQuestionByIdParams = {
   questionId: string
 }
 
-export interface QuestionVoteParams {
+export type QuestionVoteParams = {
   questionId: string
   userId: string
   hasUpVoted: boolean
@@ -78,38 +78,38 @@ export interface QuestionVoteParams {
   path: string
 }
 
-export interface DeleteQuestionParams {
+export type DeleteQuestionParams = {
   questionId: string
   path: string
 }
 
-export interface EditQuestionParams {
+export type EditQuestionParams = {
   questionId: string
   title: string
   content: string
   path: string
 }
 
-export interface GetAllTagsParams {
+export type GetAllTagsParams = {
   page?: number
   pageSize?: number
   filter?: string
   searchQuery?: string
 }
 
-export interface GetQuestionsByTagIdParams {
+export type GetQuestionsByTagIdParams = {
   tagId: string
   page?: number
   pageSize?: number
   searchQuery?: string
 }
 
-export interface GetTopInteractedTagsParams {
+export type GetTopInteractedTagsParams = {
   userId: string
   limit?: number
 }
 
-export interface CreateUserParams {
+export type CreateUserParams = {
   clerkId: string
   name: string
   username: string
@@ -117,30 +117,30 @@ export interface CreateUserParams {
   picture: string
 }
 
-export interface GetUserByIdParams {
+export type GetUserByIdParams = {
   userId: string
 }
 
-export interface GetAllUsersParams {
+export type GetAllUsersParams = {
   page?: number
   pageSize?: number
   filter?: string
   searchQuery?: string // Add searchQuery parameter
 }
 
-export interface UpdateUserParams {
+export type UpdateUserParams = {
   clerkId: string
   updateData: Partial<IUser>
   path: string
 }
 
-export interface ToggleSaveQuestionParams {
+export type ToggleSaveQuestionParams = {
   userId: string
   questionId: string
   path: string
 }
 
-export interface GetSavedQuestionsParams {
+export type GetSavedQuestionsParams = {
   clerkId: string
   page?: number
   pageSize?: number
@@ -148,12 +148,12 @@ export interface GetSavedQuestionsParams {
   searchQuery?: string
 }
 
-export interface GetUserStatsParams {
+export type GetUserStatsParams = {
   userId: string
   page?: number
   pageSize?: number
 }
 
-export interface DeleteUserParams {
+export type DeleteUserParams = {
   clerkId: string
 }
