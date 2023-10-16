@@ -50,7 +50,7 @@ const QuestionCard = ({
 
         <SignedIn>
           {clerkId === author.clerkId && (
-            <EditDeleteAction type='Question' itemId={_id} />
+            <EditDeleteAction type='Question' itemId={JSON.stringify(_id)} />
           )}
         </SignedIn>
 

@@ -7,7 +7,7 @@ type Props = SearchParamsProps & {
   clerkId?: string
 }
 
-const QuestionTab = async ({ searchProps, userId, clerkId }: Props) => {
+const QuestionTab = async ({ searchParams, userId, clerkId }: Props) => {
   const result = await getUserQuestions({
     userId,
     page: 1

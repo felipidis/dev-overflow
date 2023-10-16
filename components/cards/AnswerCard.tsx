@@ -47,7 +47,7 @@ const AnswerCard = ({
 
         <SignedIn>
           {clerkId === author.clerkId && (
-            <EditDeleteAction type='Answer' itemId={_id} />
+            <EditDeleteAction type='Answer' itemId={JSON.stringify(_id)} />
           )}
         </SignedIn>
       </div>
