@@ -1,10 +1,13 @@
 import { formatLargeNumber, getTimeStamp } from '@/lib/utils'
+import { SignedIn } from '@clerk/nextjs'
 import Link from 'next/link'
+import EditDeleteAction from '../shared/EditDeleteAction'
 import Metric from '../shared/Metric'
 import RenderTag from '../shared/RenderTag'
 
 type Author = {
   _id: string
+  clerkId: string
   name: string
   picture: string
 }
@@ -44,6 +47,12 @@ const QuestionCard = ({
             {title}
           </h2>
         </Link>
+
+        <SignedIn>
+          {clerkId === author.clerkId && (
+            <EditDeleteAction type='Question' itemId={_id} />
+          )}
+        </SignedIn>
 
         <span className='subtle-regular text-dark400_light700 line-clamp-1 flex sm:hidden'>
           {getTimeStamp(createdAt)}

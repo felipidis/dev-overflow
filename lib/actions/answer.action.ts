@@ -2,10 +2,12 @@
 import {
   AnswerVoteParams,
   CreateAnswerParams,
+  DeleteAnswerParams,
   GetAnswersParams
 } from './shared.types.d'
 
 import Answer from '@/database/answer.model'
+import Interaction from '@/database/interaction.model'
 import Question from '@/database/question.model'
 import User from '@/database/user.model'
 import { revalidatePath } from 'next/cache'
@@ -117,6 +119,26 @@ export async function downvoteAnswer(params: AnswerVoteParams) {
     }
 
     // Increment author's reputation
+
+    revalidatePath(path)
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
+
+export async function deleteAnswer(params: DeleteAnswerParams) {
+  try {
+    connectToDatabase()
+
+    const { answerId, path } = params
+
+    await Answer.findByIdAndDelete(answerId)
+    await Question.updateMany(
+      { answers: answerId },
+      { $pull: { answers: answerId } }
+    )
+    await Interaction.deleteMany({ answer: answerId })
 
     revalidatePath(path)
   } catch (error) {
