@@ -36,7 +36,15 @@ export async function getAllTags(params: GetAllTagsParams) {
   try {
     connectToDatabase()
 
-    const tags = await Tag.find({})
+    const { searchQuery } = params
+
+    const query: FilterQuery<typeof Tag> = {}
+
+    if (searchQuery) {
+      query.$or = [{ name: { $regex: searchQuery, $options: 'i' } }]
+    }
+
+    const tags = await Tag.find(query)
 
     return tags
   } catch (error) {
@@ -53,12 +61,19 @@ export async function getQuestionsByTagId(params: GetQuestionsByTagIdParams) {
 
     const tagFilter: FilterQuery<TTag> = { _id: tagId }
 
+    const query: FilterQuery<typeof Question> = {}
+
+    if (searchQuery) {
+      query.$or = [
+        { title: { $regex: searchQuery, $options: 'i' } },
+        { content: { $regex: searchQuery, $options: 'i' } }
+      ]
+    }
+
     const tag = await Tag.findOne(tagFilter).populate({
       path: 'questions',
       model: Question,
-      match: searchQuery
-        ? { title: { $regex: searchQuery, $options: 'i' } }
-        : {},
+      match: query,
       options: {
         sort: { createdAt: -1 }
       },

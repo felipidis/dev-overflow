@@ -37,9 +37,18 @@ export async function getAllUsers(params: GetAllUsersParams) {
   try {
     await connectToDatabase()
 
-    // const { page, pageSize, filter, searchQuery } = params
+    const { searchQuery } = params
 
-    const users = await User.find({}).sort({
+    const query: FilterQuery<typeof User> = {}
+
+    if (searchQuery) {
+      query.$or = [
+        { name: { $regex: searchQuery, $options: 'i' } },
+        { username: { $regex: searchQuery, $options: 'i' } }
+      ]
+    }
+
+    const users = await User.find(query).sort({
       createdAt: -1
     })
 
@@ -155,9 +164,14 @@ export async function getSavedQuestions(params: GetSavedQuestionsParams) {
 
     const { clerkId, searchQuery } = params
 
-    const query: FilterQuery<typeof Question> = searchQuery
-      ? { title: { $regex: new RegExp(searchQuery, 'i') } }
-      : {}
+    const query: FilterQuery<typeof Question> = {}
+
+    if (searchQuery) {
+      query.$or = [
+        { title: { $regex: searchQuery, $options: 'i' } },
+        { content: { $regex: searchQuery, $options: 'i' } }
+      ]
+    }
 
     const user = await User.findOne({ clerkId }).populate({
       path: 'saved',

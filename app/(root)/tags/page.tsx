@@ -3,10 +3,13 @@ import NoResult from '@/components/shared/NoResult'
 import LocalSearchBar from '@/components/shared/search/LocalSearchBar'
 import { UserFilters } from '@/constants/filters'
 import { getAllTags } from '@/lib/actions/tag.actions'
+import { SearchParamsProps } from '@/types'
 import Link from 'next/link'
 
-const Tags = async () => {
-  const tags = await getAllTags({})
+const Tags = async ({ searchParams }: SearchParamsProps) => {
+  const tags = await getAllTags({
+    searchQuery: searchParams.q
+  })
 
   return (
     <>
