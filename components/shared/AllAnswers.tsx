@@ -19,10 +19,14 @@ const AllAnswers = async ({
   questionId,
   userId,
   totalAnswers,
-  page,
+  page = 1,
   filter
 }: Props) => {
-  const answers = await getAnswers({ questionId })
+  const answers = await getAnswers({
+    questionId,
+    page,
+    sortBy: filter
+  })
 
   return (
     <div className='mt-11'>

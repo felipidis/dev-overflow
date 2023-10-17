@@ -35,7 +35,24 @@ export async function getAnswers(params: GetAnswersParams) {
   try {
     await connectToDatabase()
 
-    const { questionId } = params
+    const { questionId, sortBy } = params
+
+    let sortedOptions = {}
+
+    switch (sortBy) {
+      case 'highestUpvotes':
+        sortedOptions = { upvotes: -1 }
+        break
+      case 'lowestUpvotes':
+        sortedOptions = { upvotes: 1 }
+        break
+      case 'recent':
+        sortedOptions = { createdAt: -1 }
+        break
+      case 'old':
+        sortedOptions = { createdAt: 1 }
+        break
+    }
 
     const answers = await Answer.find({
       question: questionId
@@ -45,9 +62,7 @@ export async function getAnswers(params: GetAnswersParams) {
         model: User,
         select: '_id clerkId name picture'
       })
-      .sort({
-        createdAt: -1
-      })
+      .sort(sortedOptions)
 
     return answers
   } catch (error) {
