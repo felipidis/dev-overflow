@@ -12,7 +12,7 @@ const EditDeleteAction = ({ itemId, type }: Props) => {
   const pathname = usePathname()
   const router = useRouter()
   const handleEdit = () => {
-    router.push(`/question/edit/${itemId}`)
+    router.push(`/question/edit/${JSON.parse(itemId)}`)
   }
 
   const handleDelete = () => {
