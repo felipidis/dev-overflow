@@ -301,7 +301,7 @@ export async function getUserQuestions(params: GetUserStatsParams) {
         model: User,
         select: '_id clerkId name picture'
       })
-      .sort({ views: -1, upvotes: -1 })
+      .sort({ createdAt: -1, views: -1, upvotes: -1 })
       .skip(skip)
       .limit(pageSize)
 
