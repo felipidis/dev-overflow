@@ -36,7 +36,9 @@ export async function getAllTags(params: GetAllTagsParams) {
   try {
     connectToDatabase()
 
-    const { searchQuery, filter } = params
+    const { searchQuery, filter, page = 1, pageSize = 10 } = params
+
+    const skip = (page - 1) * pageSize
 
     const query: FilterQuery<typeof Tag> = {}
 
@@ -63,9 +65,16 @@ export async function getAllTags(params: GetAllTagsParams) {
         break
     }
 
-    const tags = await Tag.find(query).sort(sortOptions)
+    const tags = await Tag.find(query)
+      .sort(sortOptions)
+      .skip(skip)
+      .limit(pageSize)
 
-    return tags
+    const totalTags = await Tag.countDocuments(query)
+
+    const isNext = totalTags > skip + pageSize
+
+    return { tags, isNext }
   } catch (error) {
     console.log(error)
     throw error
@@ -76,7 +85,9 @@ export async function getQuestionsByTagId(params: GetQuestionsByTagIdParams) {
   try {
     await connectToDatabase()
 
-    const { tagId, searchQuery } = params
+    const { tagId, searchQuery, page = 1, pageSize = 10 } = params
+
+    const skip = (page - 1) * pageSize
 
     const tagFilter: FilterQuery<TTag> = { _id: tagId }
 
@@ -94,7 +105,9 @@ export async function getQuestionsByTagId(params: GetQuestionsByTagIdParams) {
       model: Question,
       match: query,
       options: {
-        sort: { createdAt: -1 }
+        sort: { createdAt: -1 },
+        skip,
+        limit: pageSize
       },
       populate: [
         { path: 'tags', model: Tag, select: '_id name' },
@@ -106,9 +119,16 @@ export async function getQuestionsByTagId(params: GetQuestionsByTagIdParams) {
       throw new Error('Tag not found')
     }
 
+    const totalQuestions = await Tag.aggregate([
+      { $match: { _id: tag._id } },
+      { $project: { total: { $size: '$questions' } } }
+    ])
+
+    const isNext = totalQuestions[0].total > skip + pageSize
+
     const questions = tag.questions
 
-    return { tagTitle: tag.name, questions }
+    return { tagTitle: tag.name, questions, isNext }
   } catch (error) {
     console.log(error)
     throw error
