@@ -45,4 +45,22 @@ export type BadgeCounts = {
   BRONZE: number
 }
 
+export type UrlQueryParams = {
+  params: string
+  key: string
+  value: string | null
+}
+
+export type RemoveUrlQueryParams = {
+  params: string
+  keys: string[]
+}
+
+export type BadgeParam = {
+  criteria: {
+    type: keyof typeof BADGE_CRITERIA
+    count: number
+  }[]
+}
+
 export type BadgeCriteriaType = keyof typeof BADGE_CRITERIA
