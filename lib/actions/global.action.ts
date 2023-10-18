@@ -7,7 +7,7 @@ import User from '@/database/user.model'
 import { connectToDatabase } from '../mongoose'
 import { SearchParams } from './shared.types'
 
-const SearchbleTypes = ['question', 'user', 'answer', 'tag']
+const SearchableTypes = ['question', 'user', 'answer', 'tag']
 
 export async function globalSearch(params: SearchParams) {
   try {
@@ -27,7 +27,7 @@ export async function globalSearch(params: SearchParams) {
 
     const typeLowerCase = type?.toLowerCase()
 
-    if (!typeLowerCase || !SearchbleTypes.includes(typeLowerCase)) {
+    if (!typeLowerCase || !SearchableTypes.includes(typeLowerCase)) {
       for (const { model, searchField, type } of modelsAndTypes) {
         const queryResults = await model
           .find({
