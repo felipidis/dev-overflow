@@ -10,7 +10,7 @@ import { getQuestions } from '@/lib/actions/question.action'
 import { SearchParamsProps } from '@/types'
 import Link from 'next/link'
 
-export default async function Home({ searchParams }: SearchParamsProps) {
+const Home = async ({ searchParams }: SearchParamsProps) => {
   const results = await getQuestions({
     searchQuery: searchParams.q,
     filter: searchParams.filter,
@@ -81,3 +81,5 @@ export default async function Home({ searchParams }: SearchParamsProps) {
     </>
   )
 }
+
+export default Home
