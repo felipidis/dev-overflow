@@ -1,6 +1,12 @@
 'use client'
 
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState
+} from 'react'
 
 type ThemeContextProps = {
   mode: string
@@ -30,11 +36,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     handleThemeChange()
   }, [mode])
 
-  return (
-    <ThemeContext.Provider value={{ mode, setMode }}>
-      {children}
-    </ThemeContext.Provider>
-  )
+  const value = useMemo(() => ({ mode, setMode }), [mode, setMode])
+
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
 }
 
 export function useTheme() {
