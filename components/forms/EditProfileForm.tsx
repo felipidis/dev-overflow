@@ -68,13 +68,13 @@ const EditProfileForm = ({ clerkId, user }: Props) => {
           name='name'
           render={({ field }) => (
             <FormItem className='space-y-3.5'>
-              <FormLabel>
+              <FormLabel className='paragraph-semibold text-dark400_light800'>
                 Name <span className='text-primary-500'>*</span>
               </FormLabel>
               <FormControl>
                 <Input
                   placeholder='Your name'
-                  className='no-focus paragraph-regular light-border-2 background-light700_dark300 text-dark300_light700 min-h-[56px] border'
+                  className='no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border'
                   {...field}
                 />
               </FormControl>
@@ -87,13 +87,13 @@ const EditProfileForm = ({ clerkId, user }: Props) => {
           name='username'
           render={({ field }) => (
             <FormItem className='space-y-3.5'>
-              <FormLabel>
+              <FormLabel className='paragraph-semibold text-dark400_light800'>
                 Username <span className='text-primary-500'>*</span>
               </FormLabel>
               <FormControl>
                 <Input
                   placeholder='Your username'
-                  className='no-focus paragraph-regular light-border-2 background-light700_dark300 text-dark300_light700 min-h-[56px] border'
+                  className='no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border'
                   {...field}
                 />
               </FormControl>
@@ -106,12 +106,14 @@ const EditProfileForm = ({ clerkId, user }: Props) => {
           name='portfolioLink'
           render={({ field }) => (
             <FormItem className='space-y-3.5'>
-              <FormLabel>Portfolio Link</FormLabel>
+              <FormLabel className='paragraph-semibold text-dark400_light800'>
+                Portfolio Link
+              </FormLabel>
               <FormControl>
                 <Input
                   type='url'
                   placeholder='Your portfolio URL'
-                  className='no-focus paragraph-regular light-border-2 background-light700_dark300 text-dark300_light700 min-h-[56px] border'
+                  className='no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border'
                   {...field}
                 />
               </FormControl>
@@ -124,11 +126,13 @@ const EditProfileForm = ({ clerkId, user }: Props) => {
           name='location'
           render={({ field }) => (
             <FormItem className='space-y-3.5'>
-              <FormLabel>Location</FormLabel>
+              <FormLabel className='paragraph-semibold text-dark400_light800'>
+                Location
+              </FormLabel>
               <FormControl>
                 <Input
                   placeholder='Where are you from?'
-                  className='no-focus paragraph-regular light-border-2 background-light700_dark300 text-dark300_light700 min-h-[56px] border'
+                  className='no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border'
                   {...field}
                 />
               </FormControl>
@@ -141,11 +145,13 @@ const EditProfileForm = ({ clerkId, user }: Props) => {
           name='bio'
           render={({ field }) => (
             <FormItem className='space-y-3.5'>
-              <FormLabel>Bio</FormLabel>
+              <FormLabel className='paragraph-semibold text-dark400_light800'>
+                Bio
+              </FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="What's special about you?"
-                  className='no-focus paragraph-regular light-border-2 background-light700_dark300 text-dark300_light700 min-h-[56px] border'
+                  className='no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border'
                   {...field}
                 />
               </FormControl>

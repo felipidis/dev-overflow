@@ -62,8 +62,8 @@ const QuestionDetails = async ({ params, searchParams }: URLProps) => {
         <Metric
           imgUrl='/assets/icons/clock.svg'
           alt='Upvotes'
-          value={`${getTimeStamp(question.createdAt)}`}
-          title=' Asked'
+          value={`Asked ${getTimeStamp(question.createdAt)}`}
+          title=''
           textStyles='small-medium text-dark400_light800'
         />
 

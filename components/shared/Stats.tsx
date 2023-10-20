@@ -14,7 +14,9 @@ const Stats = ({ totalQuestions, totalAnswers, badges, reputation }: Props) => {
     <div className='mt-10'>
       <div className='flex justify-between'>
         <h3 className='h3-semibold text-dark200_light900'>Stats</h3>
-        <p className='paragraph-medium'>Reputation {reputation}</p>
+        <p className='paragraph-medium text-dark200_light900'>
+          Reputation {reputation}
+        </p>
       </div>
 
       <div className='mt-5 grid grid-cols-1 gap-5 xs:grid-cols-2 md:grid-cols-4'>
